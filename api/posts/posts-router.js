@@ -38,14 +38,35 @@ postsRouter.get("/api/posts/:id", (req,res)=>{
 
 })
 //Create new post
-//
+//test
 postsRouter.post("/api/posts", (req,res)=>{
-
+	const newPost = {
+		title: req.body.title,
+		contents: req.body.contents,
+	}
+	if(!req.body.title && !req.body.contents){
+		return res.status(400).json({
+			message: "Please provide title and contents for the post"
+		})
+	}
+	posts.insert(req.body)
+		.then((post)=>{
+			console.log(res)
+			res.status(201).json({...newPost,
+				id:post.id})
+			})
+		.catch(()=>{
+			res.status(500).json({ message: "There was an error while saving the post to the database" })
+			})
 })
 //Update existing post
 //
 postsRouter.put("/api/posts/:id", (req,res)=>{
-
+if(!req.body.title && !req.body.contents){
+	return res.status(400).json({
+		 message: "Please provide title and contents for the post" 
+	})
+}
 })
 //delete post by id
 //
