@@ -1,5 +1,5 @@
 // require your server and launch it here
-const server = require('./server');
+const server = require('./api/server');
 
 const port = 5000
 

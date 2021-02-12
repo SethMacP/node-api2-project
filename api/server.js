@@ -6,6 +6,14 @@ const postsRouter = require('./posts/posts-router')
 const server = express();
 
 server.use(express.json());
+
+//working, no issues
+server.get("/", (req,res)=>{
+    res.json({
+        message:"Welcome to the API"
+    })
+})
+
 server.use(postsRouter);
 
 module.exports = server;
